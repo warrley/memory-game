@@ -4,6 +4,7 @@ import { Button } from '@/components/Button';
 import { GridItem } from '@/components/GridItem';
 import { InfoItem } from '@/components/InfoItem';
 import { items } from '@/data/items';
+import { formatTimeElapsed } from '@/helpers/formatTimeElapsed';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
@@ -56,26 +57,34 @@ const App = () => {
 
   useEffect(() => {
     handleReset()
-  }, [])
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (playing) {
+        setTimeElapsed(prev => prev + 1);
+      };
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [playing, timeElapsed]);
   
   const handleClickItem = (index: number) => {
 
   }
 
   return (
-    <div className='container bg-sky-300/30 rounded-2xl mx-auto flex-col lg:flex-row w-100% max-w-[850px] flex py-10 select-none px-10'>
+    <div className='container bg-white/40 rounded-2xl mx-auto flex-col lg:flex-row w-100% max-w-[850px] flex py-10 select-none px-10'>
       <div className='flex flex-col w-auto mb-[50px] items-center lg:items-stretch lg:m-0'>
         <Link className='block' href="">
           <img className='w-[300px]' src="logo.png"/>
         </Link>
         <div className='w-auto my-[10px] flex justify-around text-center lg:block lg:text-left'>
-          <InfoItem label='Temp' value='00:00'/>
+          <InfoItem label='Temp' value={formatTimeElapsed(timeElapsed)} />
           <InfoItem label='Movements' value='0'/>
         </div>
 
         <Button label='Reset' icon="svgs/restart.svg" onClick={handleReset}/>
       </div>
-
       <div className='flex-1 flex justify-center mx-[20px] lg:mx-[0] lg:justify-end'>
         <div className='grid grid-cols-4 gap-6 w-[430px] '>
           {gridItems.map((item, index) => (
