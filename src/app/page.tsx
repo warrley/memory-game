@@ -119,10 +119,10 @@ const App = () => {
   };
 
   return (
-    <div className='container bg-white/40 rounded-2xl flex-col lg:flex-row w-100% max-w-[850px] flex py-10 select-none px-10 mx-4'>
-      <div className='flex flex-col w-auto mb-[50px] items-center lg:items-stretch lg:m-0'>
+    <div className='container bg-white/40 rounded-2xl flex-col lg:flex-row w-100% max-w-[850px] flex py-6 md:py-10 select-none mx-4  lg:px-10'>
+      <div className='flex flex-col w-auto items-center justify-center lg:items-stretch lg:m-0'>
         <Link className='block' href="">
-          <img className='w-[300px]' src="logo.png"/>
+          <img className='w-[250px] md:w-[300px]' src="logo.png"/>
         </Link>
         <div className='w-auto my-[10px] flex justify-around text-center lg:block lg:text-left'>
           <InfoItem label='Temp' value={formatTimeElapsed(timeElapsed)} />
@@ -131,8 +131,8 @@ const App = () => {
 
         <Button label='Reset' icon="svgs/restart.svg" onClick={handleReset}/>
       </div>
-      <div className='flex-1 flex justify-center mx-[20px] lg:mx-[0] lg:justify-end'>
-        <div className='grid grid-cols-3 md:grid-cols-4 gap-6'>
+      <div className='flex-1 w-full flex mt-10 justify-center  lg:mx-[0] lg:justify-end'>
+        <div className='grid grid-cols-3 md:grid-cols-4 gap-2 lg:gap-6'>
           {gridItems.map((item, index) => (
           <GridItem 
             key={index}
@@ -142,6 +142,10 @@ const App = () => {
         ))}
         </div>
       </div>
+
+      <p className='fixed bottom-0 left-1/2 -translate-x-1/2 text-white/70 underline'>
+        <a href="https://github.com/warrley/memory-game" target='_blank'>by warleyfarias</a>
+      </p>
     </div>
   )
 }
