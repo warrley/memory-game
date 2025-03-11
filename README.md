@@ -1,36 +1,28 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Memory Game
 
-## Getting Started
+Este é um simples jogo de memoria.
 
-First, run the development server:
+<a href="https://memory-game-red-eight.vercel.app/">Clique para acessar o site</a> 
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Instruções para rodar o projeto na sua máquina ->  
+1.Abra o cmd, vá até uma pasta que queria colocar o projeto.  
+2.Digite git clone https://github.com/warrley/memory-game
+3.Digite npm i  
+4.Digite npm run dev, e abra o link dado.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tecnologias Usadas
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+-React  
+-Next  
+-Typescript  
+-Tailwind  
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+## Autor
+<a href="">Warley</a>
 
-To learn more about Next.js, take a look at the following resources:
+## Prévias
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+https://github.com/user-attachments/assets/4c49f9bb-664e-4663-9f16-009f7c4d12c4
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+https://github.com/user-attachments/assets/4f890ed4-888f-43af-b934-8f033894fbbe
