@@ -67,26 +67,72 @@ const App = () => {
     }, 1000);
     return () => clearInterval(timer);
   }, [playing, timeElapsed]);
-  
-  const handleClickItem = (index: number) => {
 
-  }
+  useEffect(() => {
+    if (showCount === 2) {
+      let opened = gridItems.filter(item => item.show === true);
+      if (opened.length === 2) {
+        
+        let tmpGrid = [...gridItems];
+        if (opened[0].item === opened[1].item) {
+          for (let i in tmpGrid) {
+            if (tmpGrid[i].show) {
+              tmpGrid[i].permanentShow = true;
+              tmpGrid[i].show = false;
+            }
+          }
+          setGridItems(tmpGrid);
+          setShowCount(0);
+        } else {
+          setTimeout(() => {
+            for (let i in tmpGrid) {
+              tmpGrid[i].show = false;
+            };
+          
+            setGridItems(tmpGrid);
+            setShowCount(0);
+         }, 500)
+        };
+
+        setMoveCount(prev => prev + 1);
+      }
+    }
+  },[showCount, gridItems])
+  
+  useEffect(() => {
+    if (moveCount > 0 && gridItems.every(item => item.permanentShow === true)) {
+      setPlaying(false);
+    }
+  }, [moveCount, gridItems])
+
+  const handleClickItem = (index: number) => {
+    if (playing && index !== null && showCount < 2) {
+      let tmpGrid = [...gridItems];
+
+      if (!tmpGrid[index].permanentShow && !tmpGrid[index].show) {
+        tmpGrid[index].show = true;
+        setShowCount(prev => prev + 1);
+      }
+
+      setGridItems(tmpGrid);
+    };
+  };
 
   return (
-    <div className='container bg-white/40 rounded-2xl mx-auto flex-col lg:flex-row w-100% max-w-[850px] flex py-10 select-none px-10'>
+    <div className='container bg-white/40 rounded-2xl flex-col lg:flex-row w-100% max-w-[850px] flex py-10 select-none px-10 mx-4'>
       <div className='flex flex-col w-auto mb-[50px] items-center lg:items-stretch lg:m-0'>
         <Link className='block' href="">
           <img className='w-[300px]' src="logo.png"/>
         </Link>
         <div className='w-auto my-[10px] flex justify-around text-center lg:block lg:text-left'>
           <InfoItem label='Temp' value={formatTimeElapsed(timeElapsed)} />
-          <InfoItem label='Movements' value='0'/>
+          <InfoItem label='Movements' value={moveCount.toString()}/>
         </div>
 
         <Button label='Reset' icon="svgs/restart.svg" onClick={handleReset}/>
       </div>
       <div className='flex-1 flex justify-center mx-[20px] lg:mx-[0] lg:justify-end'>
-        <div className='grid grid-cols-4 gap-6 w-[430px] '>
+        <div className='grid grid-cols-3 md:grid-cols-4 gap-6'>
           {gridItems.map((item, index) => (
           <GridItem 
             key={index}
